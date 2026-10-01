@@ -1,4 +1,5 @@
-from lib import check_rec_mat, check_values
+from src.lib.check_mat_values_f import check_values
+from src.lib.check_rec_mat_f import check_rec_mat
 
 def transpose(mat: list[list[int]]) -> list[list[int]]:
     """
