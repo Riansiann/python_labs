@@ -23,12 +23,11 @@ def format_record(rec: tuple[str, str, float]) -> str:
 
     fio, group, gpa = rec
     
-
+    if not isinstance(fio, str):
+            raise TypeError('Full name must be a string')
     if not fio:
         raise ValueError('Full name cannot be empty')
-    if not isinstance(fio, str):
-        raise TypeError('Full name must be a string')
-
+    
     name_parts = fio.strip().split()
 
     if len(name_parts) not in (2, 3):
@@ -39,11 +38,10 @@ def format_record(rec: tuple[str, str, float]) -> str:
     surname = name_parts[0].capitalize()
     initials = ''.join(part[0].upper() + '.' for part in name_parts[1:])
 
-
+    if not isinstance(group, str):
+            raise TypeError('Group must be a string')
     if not group:
         raise ValueError('Group cannot be empty')
-    if not isinstance(group, str):
-        raise TypeError('Group must be a string')
     group = group.strip()
   
     if isinstance(gpa,bool) or not isinstance(gpa, (int, float)):

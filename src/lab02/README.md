@@ -36,8 +36,8 @@ print(min_max([]))
 
 ### 2. unique_sorted
 
-Вследствие запрета на встроенную сортировку используется "пузырьковая сортировка" (выполняется некоторое количество проходов по массиву с перебором пар соседних элементов до момента, пока значения не встанут в необходимом порядке).  
-На вход функции подается список чисел. Далее создается пустой результирующий список, в который добавляются значения из входного при условии, что они в нём не повторяются. Функция возвращает результирующий список, отсортированный при помощи пузырьковым методом.
+Так как использование встроенной сортировки запрещено, реализована пузырьковая сортировка (выполняется некоторое количество проходов по массиву с перебором пар соседних элементов до момента, пока значения не встанут в необходимом порядке).  
+На вход функции подается список чисел. Далее создается пустой результирующий список, в который добавляются значения из входного при условии, что они в нём не повторяются. Функция возвращает результирующий список, отсортированный методом пузырьковой сортировки.
 
 ```python
 def bubble_sort(nums: list[float|int]) -> list[float|int]:
@@ -247,11 +247,10 @@ def format_record(rec: tuple[str, str, float]) -> str:
 
     fio, group, gpa = rec
     
-
-    if not fio:
-        raise ValueError('Full name cannot be empty')
     if not isinstance(fio, str):
         raise TypeError('Full name must be a string')
+    if not fio:
+        raise ValueError('Full name cannot be empty')
 
     name_parts = fio.strip().split()
 
@@ -263,11 +262,10 @@ def format_record(rec: tuple[str, str, float]) -> str:
     surname = name_parts[0].capitalize()
     initials = ''.join(part[0].upper() + '.' for part in name_parts[1:])
 
-
-    if not group:
-        raise ValueError('Group cannot be empty')
     if not isinstance(group, str):
         raise TypeError('Group must be a string')
+    if not group:
+        raise ValueError('Group cannot be empty')
     group = group.strip()
   
     if isinstance(gpa,bool) or not isinstance(gpa, (int, float)):
@@ -307,7 +305,7 @@ print(format_record( ["Иванов Иван", "BIVT-25", 4.6] ))
 ### ValueError
 
 #### Входные данные: ("  сидорова  анна   сергеевна ", "ABB-01", -1.999)
-![ошибка: gpa не в диапозоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)\
+![ошибка: gpa не в диапазоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)\
 *ошибка: gpa не в диапозоне от 0.0 до 5.0*
 
 #### Входные данные: (" Анна ", "ACC-01", 3.7)
