@@ -211,32 +211,53 @@ print(col_sums([[1, 2], [3]]))
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
     """
-    Returns a formatted string containing a student's last name, initials, group, and GPA.
+    Returns a formatted string containing a student's surname, initials,
+    group, and GPA.
     Raises:
-    ValueError: If the record does not contain three elements,
-        the full name is empty or invalid, the group is empty,
-        or the GPA is outside the range from 0.0 to 5.0.
-    TypeError: If GPA is not a number.
+    ValueError:
+        If the record does not contain three elements.
+        If the full name is empty or does not contain 2 or 3 parts.
+        If any part of the full name contains non-alphabetic characters.
+        If the group is empty.
+        If the GPA is outside the range from 0.0 to 5.0.
+
+    TypeError:
+        If the record is not a tuple.
+        If the full name is not a string.
+        If the group is not a string.
+        If the GPA is not a number (int or float), including bool.
     """
+    if not isinstance(rec, tuple):
+        raise TypeError('Record must be a tuple')
     if len(rec) != 3:
             raise ValueError('Record must contain 3 elements: full name, group, and GPA. Check that you have entered all the necessary information, separated by commas.')
 
     fio, group, gpa = rec
-    fio = fio.strip()
-    group = group.strip()
     
+
     if not fio:
         raise ValueError('Full name cannot be empty')
-    name_parts = fio.split()
+    if not isinstance(fio, str):
+        raise TypeError('Full name must be a string')
+
+    name_parts = fio.strip().split()
+
     if len(name_parts) not in (2, 3):
         raise ValueError('Full name must contain at least Surname and First name')
+    if any(not part.isalpha() for part in name_parts):
+        raise ValueError("Full name must contain only alphabetic characters")
+
     surname = name_parts[0].capitalize()
     initials = ''.join(part[0].upper() + '.' for part in name_parts[1:])
-    
+
+
     if not group:
         raise ValueError('Group cannot be empty')
+    if not isinstance(group, str):
+        raise TypeError('Group must be a string')
+    group = group.strip()
   
-    if not isinstance(gpa, (int, float)):
+    if isinstance(gpa,bool) or not isinstance(gpa, (int, float)):
         raise TypeError('GPA must be a number.')
     if not 0.0 <= gpa <= 5.0:
         raise ValueError('GPA must be in the range from 0.0 to 5.0.')
@@ -244,10 +265,65 @@ def format_record(rec: tuple[str, str, float]) -> str:
     return f'{surname} {initials}, гр. {group}, GPA {gpa:.2f}'
 
 #test cases
+
 print(format_record( ("Иванов Иван Иванович", "BIVT-25", 4.6) ))
 print(format_record( ("Петров Пётр", "IKBO-12", 5.0) ))
 print(format_record( ("Петров Пётр Петрович", "IKBO-12", 5.0) ))
 print(format_record( ("  сИдОРова  анна   сергеевна ", "ABB-01", 3.999) ))
+
+
+#additional test cases for checking ValueError
+
 print(format_record( ("  сидорова  анна   сергеевна ", "ABB-01", -1.999) ))
+print(format_record( (" Анна ", "ACC-01", 3.7) ))
+print(format_record( ("  ", "ABB-01", 3.999) ))
+print(format_record( ("Петров Пётр", "", 3.999) ))
+print(format_record( ("Пе67ов Пётр Пет42вич", "IKBO-12", 5.0) ))
+
+#additional test cases for checking TypeError
+
+print(format_record( ("  сИдОРова  анна   сергеевна ", "ABB-01", "3.999") ))
+print(format_record( ("Петров Пётр", "IKBO-12", True) ))
+print(format_record( (["Иванов Иван"], "BIVT-25", 3.999) ))
+print(format_record( ["Иванов Иван", "BIVT-25", 4.6] ))
+
 ```
-![результат задания 3](../../images/lab02/tuples.png)
+![результат задания 3](../../images/lab02//tuples_test_cases/correct_cases.png)
+
+### ValueError
+
+Входные данные: ("  сидорова  анна   сергеевна ", "ABB-01", -1.999)
+![ошибка: gpa не в диапозоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)
+
+Входные данные: (" Анна ", "ACC-01", 3.7)
+![ошибка: введено только имя](../../images/lab02/tuples_test_cases/ValueError/Full_name_len.png)
+
+Входные данные: ("  ", "ABB-01", 3.999)
+![ошибка: пустое фио](../../images/lab02/tuples_test_cases/ValueError/empty_full_name.png)
+
+Входные данные: ("Петров Пётр", "", 3.999)
+![ошибка: пустая группа](../../images/lab02/tuples_test_cases/ValueError/empty_group.png)
+
+Входные данные: ("Пе67ов Пётр Пет42вич", "IKBO-12", 5.0)
+![ошибка: фио содержит не только буквы](../../images/lab02/tuples_test_cases/ValueError/full_name_alphabet.png)
+
+### TypeError
+
+Входные данные: ("  сИдОРова  анна   сергеевна ", "ABB-01", "3.999")
+![ошибка: gpa не является числом](../../images/lab02/tuples_test_cases/TypeError/gpa_is_not_number.png)
+
+Входные данные: ("Петров Пётр", "IKBO-12", True)
+![ошибка: gpa - булева переменная](../../images/lab02/tuples_test_cases/TypeError/gpa_is_bool.png)
+
+Входные данные: (["Иванов Иван"], "BIVT-25", 3.999)
+![ошибка: фио не является строкой](../../images/lab02/tuples_test_cases/TypeError/fio_is_not_str.png)
+
+Входные данные: ["Иванов Иван", "BIVT-25", 4.6]
+![ошибка: введен не кортеж](../../images/lab02/tuples_test_cases/TypeError/rec_is_not_tuple.png)
+
+
+
+
+
+
+
