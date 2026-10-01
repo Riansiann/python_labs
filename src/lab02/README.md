@@ -260,9 +260,9 @@ def format_record(rec: tuple[str, str, float]) -> str:
 
     if not isinstance(group, str):
         raise TypeError('Group must be a string')
+    group = group.strip()
     if not group:
         raise ValueError('Group cannot be empty')
-    group = group.strip()
   
     if isinstance(gpa,bool) or not isinstance(gpa, (int, float)):
         raise TypeError('GPA must be a number.')
