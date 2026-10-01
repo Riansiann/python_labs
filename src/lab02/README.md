@@ -31,7 +31,7 @@ print(min_max([-5,-2,-9]))
 print(min_max([1.5,2,2.0,-3.1]))
 print(min_max([]))
 ```
-![результат задания 1.1](../../images/lab02/arrays_01.png)
+![результат задания 1.1](../../images/lab02/arrays_01.png)\
 *результат задания 1.1*
 
 ### 2. unique_sorted
@@ -74,7 +74,7 @@ print(unique_sorted([-1,-1,0,2,2]))
 print(unique_sorted([]))
 print(unique_sorted([1.0,1,2.5,2.5,0]))
 ```
-![результат задания 1.2](../../images/lab02/arrays_02.png)
+![результат задания 1.2](../../images/lab02/arrays_02.png)\
 *результат задания 1.2*
 
 ### 3. flatten
@@ -101,7 +101,7 @@ print(flatten([[1, 2], (3,4,5)]))
 print(flatten([[1], [], [2,3]]))
 print(flatten([[1, 2], 'ab']))
 ```
-![результат задания 1.3](../../images/lab02/arrays_03.png)
+![результат задания 1.3](../../images/lab02/arrays_03.png)\
 *результат задания 1.3*
 
 ## Задание B
@@ -167,7 +167,7 @@ print(transpose([[1,2], [3,4]]))
 print(transpose([]))
 print(transpose([[1,2],[3]]))
 ```
-![результат задания 2.1](../../images/lab02/matrix_01.png)
+![результат задания 2.1](../../images/lab02/matrix_01.png)\
 *результат задания 2.1*
 
 ### row_sums
@@ -190,7 +190,7 @@ print(row_sums([[-1,1], [10,-10]]))
 print(row_sums([[0,0], [0,0]]))
 print(row_sums([[1, 2], [3]]))
 ```
-![результат задания 2.2](../../images/lab02/matrix_02.png)
+![результат задания 2.2](../../images/lab02/matrix_02.png)\
 *результат задания 2.2*
 
 ### col_sums
@@ -213,7 +213,7 @@ print(col_sums([[-1,1], [10,-10]]))
 print(col_sums([[0,0], [0,0]]))
 print(col_sums([[1, 2], [3]]))
 ```
-![результат задания 2.3](../../images/lab02/matrix_03.png)
+![результат задания 2.3](../../images/lab02/matrix_03.png)\
 *результат задания 2.3*
 
 ## Задание C
@@ -301,47 +301,47 @@ print(format_record( (["Иванов Иван"], "BIVT-25", 3.999) ))
 print(format_record( ["Иванов Иван", "BIVT-25", 4.6] ))
 
 ```
-![результат задания 3](../../images/lab02//tuples_test_cases/correct_cases.png)
+![результат задания 3](../../images/lab02//tuples_test_cases/correct_cases.png)\
 *результат задания 3*
 
 ### ValueError
 
 #### Входные данные: ("  сидорова  анна   сергеевна ", "ABB-01", -1.999)
-![ошибка: gpa не в диапозоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)
+![ошибка: gpa не в диапозоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)\
 *ошибка: gpa не в диапозоне от 0.0 до 5.0*
 
 #### Входные данные: (" Анна ", "ACC-01", 3.7)
-![ошибка: введено только имя](../../images/lab02/tuples_test_cases/ValueError/Full_name_len.png)
+![ошибка: введено только имя](../../images/lab02/tuples_test_cases/ValueError/Full_name_len.png)\
 *ошибка: введено только имя*
 
 #### Входные данные: ("  ", "ABB-01", 3.999)
-![ошибка: пустое фио](../../images/lab02/tuples_test_cases/ValueError/empty_full_name.png)
+![ошибка: пустое фио](../../images/lab02/tuples_test_cases/ValueError/empty_full_name.png)\
 *ошибка: пустое фио*
 
 #### Входные данные: ("Петров Пётр", "", 3.999)
-![ошибка: пустая группа](../../images/lab02/tuples_test_cases/ValueError/empty_group.png)
+![ошибка: пустая группа](../../images/lab02/tuples_test_cases/ValueError/empty_group.png)\
 *ошибка: пустая группа*
 
 #### Входные данные: ("Пе67ов Пётр Пет42вич", "IKBO-12", 5.0)
-![ошибка: фио содержит не только буквы](../../images/lab02/tuples_test_cases/ValueError/full_name_alphabet.png)
+![ошибка: фио содержит не только буквы](../../images/lab02/tuples_test_cases/ValueError/full_name_alphabet.png)\
 *ошибка: фио содержит не только буквы*
 
 ### TypeError
 
 #### Входные данные: ("  сИдОРова  анна   сергеевна ", "ABB-01", "3.999")
-![ошибка: gpa не является числом](../../images/lab02/tuples_test_cases/TypeError/gpa_is_not_number.png)
+![ошибка: gpa не является числом](../../images/lab02/tuples_test_cases/TypeError/gpa_is_not_number.png)\
 *ошибка: gpa не является числом*
 
 #### Входные данные: ("Петров Пётр", "IKBO-12", True)
-![ошибка: gpa - булева переменная](../../images/lab02/tuples_test_cases/TypeError/gpa_is_bool.png)
+![ошибка: gpa - булева переменная](../../images/lab02/tuples_test_cases/TypeError/gpa_is_bool.png)\
 *ошибка: gpa - булева переменная*
 
 #### Входные данные: (["Иванов Иван"], "BIVT-25", 3.999)
-![ошибка: фио не является строкой](../../images/lab02/tuples_test_cases/TypeError/fio_is_not_str.png)
+![ошибка: фио не является строкой](../../images/lab02/tuples_test_cases/TypeError/fio_is_not_str.png)\
 *ошибка: фио не является строкой*
 
 #### Входные данные: ["Иванов Иван", "BIVT-25", 4.6]
-![ошибка: введен не кортеж](../../images/lab02/tuples_test_cases/TypeError/rec_is_not_tuple.png)
+![ошибка: введен не кортеж](../../images/lab02/tuples_test_cases/TypeError/rec_is_not_tuple.png)\
 *ошибка: введен не кортеж*
 
 
