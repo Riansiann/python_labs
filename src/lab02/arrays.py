@@ -4,11 +4,9 @@ def min_max(nums: list[float|int]) -> tuple[float|int, float|int]:
     """
     if not nums:
         raise ValueError('The list cannot be empty')
-    for _ in nums:
-        try:
-            float(_)
-        except ValueError:
-            raise ValueError('The list must contain only numbers')        
+    for num in nums:
+        if isinstance(num, bool) or not isinstance(num, (int, float)):
+            raise TypeError('The list must contain only numbers')
 
     maxnums, minnums = nums[0], nums[0]
     for num in nums:
@@ -39,12 +37,10 @@ def unique_sorted(nums: list[float|int]) -> list[float|int]:
     """
     This function returns a sorted list of numbers (integers or floats) with duplicates removed.
     """
-    for _ in nums:  
-        try:
-            float(_)
-        except ValueError:
-            raise ValueError('The list must contain only numbers')
-
+    for num in nums:
+        if isinstance(num, bool) or not isinstance(num, (int, float)):
+            raise TypeError('The list must contain only numbers')
+        
     unique_nums = []
     for num in nums:
         if num not in unique_nums:

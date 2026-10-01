@@ -10,11 +10,9 @@ def min_max(nums: list[float|int]) -> tuple[float|int, float|int]:
     """
     if not nums:
         raise ValueError('The list cannot be empty')
-    for _ in nums:
-        try:
-            float(_)
-        except ValueError:
-            raise ValueError('The list must contain only numbers')        
+    for num in nums:
+        if isinstance(num, bool) or not isinstance(num, (int, float)):
+            raise TypeError('The list must contain only numbers')
 
     maxnums, minnums = nums[0], nums[0]
     for num in nums:
@@ -54,12 +52,10 @@ def unique_sorted(nums: list[float|int]) -> list[float|int]:
     """
     This function returns a sorted list of numbers (integers or floats) with duplicates removed.
     """
-    for _ in nums:  
-        try:
-            float(_)
-        except ValueError:
-            raise ValueError('The list must contain only numbers')
-
+    for num in nums:
+        if isinstance(num, bool) or not isinstance(num, (int, float)):
+            raise TypeError('The list must contain only numbers')
+        
     unique_nums = []
     for num in nums:
         if num not in unique_nums:
@@ -199,7 +195,7 @@ print(row_sums([[1, 2], [3]]))
 ```python
 def col_sums(mat: list[list[float|int]]) -> list[float]:
     """
-    This function calculstes the sum of each column in the given matrix.
+    This function calculates the sum of each column in the given matrix.
     """
     if not check_rec_mat(mat):
         raise ValueError("Matrix is not rectangular")
@@ -219,7 +215,7 @@ print(col_sums([[1, 2], [3]]))
 ## Задание C
 
 Функция принимает на вход запись студента, представленную в виде кортежа, содержащего ФИО, группу и GPA. Проверяется корректность количества элементов записи, ФИО и группы, а также тип и диапазон значения GPA. Из ФИО выделяется фамилия и формируются инициалы имени и отчества.
-Фунция возвращает строку с фамилией, инициалами, группой и GPA, округленным до двух знаков после запятой. 
+Функция возвращает строку с фамилией, инициалами, группой и GPA, округленным до двух знаков после запятой. 
 
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
@@ -306,7 +302,7 @@ print(format_record( ["Иванов Иван", "BIVT-25", 4.6] ))
 
 #### Входные данные: ("  сидорова  анна   сергеевна ", "ABB-01", -1.999)
 ![ошибка: gpa не в диапазоне от 0.0 до 5.0](../../images/lab02/tuples_test_cases/ValueError/VE_gpa_range.png)\
-*ошибка: gpa не в диапозоне от 0.0 до 5.0*
+*ошибка: gpa не в диапазоне от 0.0 до 5.0*
 
 #### Входные данные: (" Анна ", "ACC-01", 3.7)
 ![ошибка: введено только имя](../../images/lab02/tuples_test_cases/ValueError/Full_name_len.png)\
