@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     print("\nAll tests passed!")
 ```
-![результат задания A](../../images/lab03/text_tests.png)
+![результат задания A](../../images/lab03/text_tests.png)\
 *результат мини-тестов для функций*
 
 ## Задание B
@@ -123,11 +123,11 @@ else:
     for token, count in top_tokens:
         print(f'{token:<{max_token_length}} | {count}')
 ```
-![результат задания B (тест из ТЗ)](../../images/lab03/text_stats_test_00.png)
+![результат задания B (тест из ТЗ)](../../images/lab03/text_stats_test_00.png)\
 *тест из ТЗ, результат в виде таблицы*
 
-![результат задания B  (свой тест + таблица)](../../images/lab03/text_stats_test.png)
+![результат задания B (свой тест + таблица)](../../images/lab03/text_stats_test.png)\
 *вывод результата в виде таблицы*
 
-![результат задания B (свой тест + список)](../../images/lab03/text_stats_test_list.png)
+![результат задания B (свой тест + список)](../../images/lab03/text_stats_test_list.png)\
 *вывод результата построчно*
