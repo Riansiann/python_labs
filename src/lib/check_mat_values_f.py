@@ -4,5 +4,5 @@ def check_values(mat: list[list[int]]):
     """
     for row in mat:
         for el in row:
-            if not isinstance(el, (float, int)):
+            if isinstance(el, bool) or not isinstance(el, (float, int)):
                 raise ValueError("Matrix must contain only floats or integers")
