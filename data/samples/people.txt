@@ -1,0 +1,13 @@
+Alice loves Python. Bob loves Java.
+Carlos loves Python, and Dana loves Python!
+
+Python is popular. Java is popular too.
+Alice studies Python. Bob studies Java.
+
+Moscow is a big city. Kazan is a beautiful city.
+Alice lives in Moscow, and Bob lives in Kazan.
+
+PYTHON python Python!
+Hello, hello, HELLO!
+Version 3 is better than version 2.
+Python is a well-known programming language.
