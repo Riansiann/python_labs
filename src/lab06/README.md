@@ -90,16 +90,24 @@ if __name__ == "__main__":
     main()
 ```
 ### Запуск
-```python -m src.lab06.cli_text cat --input data/samples/people.csv```
+```bash
+python -m src.lab06.cli_text cat --input data/samples/people.csv
+```
 ![cat_without_n](../../images/lab06/cat_no_n.png)
 *Вывод содержимого файла*\
-```python -m src.lab06.cli_text cat --input data/samples/people.csv -n```
+```bash
+python -m src.lab06.cli_text cat --input data/samples/people.csv -n
+```
 ![cat_with_n](../../images/lab06/cat_with_n.png)
 *Вывод содержимого файла с нумерацией строк*\
-```python -m src.lab06.cli_text stats --input data/samples/people.txt --top 5```
+```bash
+python -m src.lab06.cli_text stats --input data/samples/people.txt --top 5
+```
 ![stats top 5](../../images/lab06/stats_top_5.png)
 *Анализ частот слов, выведен топ-5*\
-```python -m src.lab06.cli_text stats --input data/samples/people.txt --top 3```
+```bash
+python -m src.lab06.cli_text stats --input data/samples/people.txt --top 3
+```
 ![stats top 3](../../images/lab06/stats_top_3.png)
 *Анализ частот слов, выведен топ-3*
 
@@ -149,29 +157,45 @@ if __name__ == "__main__":
 ```
 
 ### Запуск
-```python -m src.lab06.cli_convert json2csv --in data/samples/people.json --out data/out/lab06/people_from_json.csv```
+```bash
+python -m src.lab06.cli_convert json2csv --in data/samples/people.json --out data/out/lab06/people_from_json.csv
+```
 ![json2csv](../../images/lab06/json2csv.png)\
 *json2csv*\
-```python -m src.lab06.cli_convert csv2json --in data/samples/people.csv --out data/out/lab06/people_from_csv.json```
+```bash
+python -m src.lab06.cli_convert csv2json --in data/samples/people.csv --out data/out/lab06/people_from_csv.json
+```
 ![csv2json](../../images/lab06/csv2json.png)\
 *csv2json*\
-```python -m src.lab06.cli_convert csv2xlsx --in data/samples/people.csv --out data/out/lab06/people.xlsx```
+```bash
+python -m src.lab06.cli_convert csv2xlsx --in data/samples/people.csv --out data/out/lab06/people.xlsx
+```
 ![csv2xlsx](../../images/lab06/csv2xlsx.png)\
 *csv2xlsx*
 
 ## Проверка справки --help
 ### cli_text
-```python -m src.lab06.cli_text --help```
+```bash
+python -m src.lab06.cli_text --help
+```
 ![cli_text_help](../../images/lab06/cli_help.png)
-```python -m src.lab06.cli_text cat --help```
+```bash
+python -m src.lab06.cli_text cat --help
+```
 ![cli_text_cat_help](../../images/lab06/cli_cat_help.png)
-```python -m src.lab06.cli_text stats --help```
+```bash
+python -m src.lab06.cli_text stats --help
+```
 ![cli_text_stats_help](../../images/lab06/cli_stats_help.png)
 
 ### cli_convert
-```python -m src.lab06.cli_convert --help```
+```bash
+python -m src.lab06.cli_convert --help
+```
 ![convert_help](../../images/lab06/convert_help.png)
-```python -m src.lab06.cli_convert json2csv --help```
+```bash
+python -m src.lab06.cli_convert json2csv --help
+```
 ![convert_2_help](../../images/lab06/convert_2.png)
 
 ## Обработка ошибок
@@ -181,10 +205,14 @@ if __name__ == "__main__":
     parser.error() — аргумент --top имеет недопустимое значение или пользователь неправильно указал параметры команды.
 
 Проверка отрицательного значения --top:
-```python -m src.lab06.cli_text stats --input data/samples/people.txt --top -3```
+```bash
+python -m src.lab06.cli_text stats --input data/samples/people.txt --top -3
+```
 ![top_error](../../images/lab06/top_error.png)
 Проверка отсутствующего файла:
-```python -m src.lab06.cli_text cat --input missing.txt```
+```bash
+python -m src.lab06.cli_text cat --input missing.txt
+```
 ![file not found](../../images/lab06/file_not_found_cli.png)
 
 ### cli_convert
@@ -193,5 +221,7 @@ if __name__ == "__main__":
     parser.error() — пользователь не передал обязательные аргументы или ввёл некорректную подкоманду.
 
 Проверка отсутствия обязательных аргументов:
-```python -m src.lab06.cli_convert json2csv```
+```bash
+python -m src.lab06.cli_convert json2csv
+```
 ![no args](../../images/lab06/no_arg.png)
