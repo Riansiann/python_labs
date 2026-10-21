@@ -9,10 +9,9 @@ def main():
     input_path = 'data/lab4/input.txt'
     output_path = 'data/lab4/report.csv'
     try:
-        text = read_text(input_path, encoding="cp1251")
+        text = read_text(input_path, encoding="utf-8")
     except FileNotFoundError:
-        print("File not found")
-        sys.exit(1)
+        print(f"Файл не найден: {input_path}", file=sys.stderr)
 
     normal = normalize(text)
     tokens = tokenize(normal)

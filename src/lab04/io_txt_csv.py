@@ -6,13 +6,13 @@ def read_text(path: str | Path, encoding = "utf-8") -> str:
     '''
     Reads text file and returns its contents as a single string.
     UTF-8 encoding is used by default. 
-    A different encoding can be specified as: read_text("name_of_a_file.txt, encoding="cp1251").
+    A different encoding can be specified: read_text("name_of_a_file.txt, encoding="cp1251").
     Raises:
         FileNotFoundError: if the file does not exist.
         UnicodeDecodeError if the file cannot be decoded with the specified encoding.
     '''
     p = Path(path)
-    return p.read_text(encoding="utf-8")
+    return p.read_text(encoding=encoding)
 
 def ensure_parent_dir(path: str | Path) -> None:
     '''

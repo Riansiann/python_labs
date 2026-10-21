@@ -89,8 +89,7 @@ def main():
     try:
         text = read_text(input_path, encoding="utf-8")
     except FileNotFoundError:
-        print("File not found")
-        sys.exit(1)
+        print(f"Файл не найден: {input_path}", file=sys.stderr)
 
     normal = normalize(text)
     tokens = tokenize(normal)
@@ -106,6 +105,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 ```
 
 ## Тесты для задания B

@@ -1,4 +1,4 @@
-# ЛР5 — JSON и конвертации (JSON↔CSV, CSV→XLSX): Техническое задание
+# ЛР5 — JSON и конвертации (JSON↔CSV, CSV→XLSX)
 ## Задание A — JSON ↔ CSV
 
 ```python
@@ -177,4 +177,4 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
 ```python
 python -c "from src.lab05.csv_xlsx import csv_to_xlsx; csv_to_xlsx('data/samples/people.csv', 'data/out/people.xlsx')"   
 ```
-![people.xlsx](../../images/lab05/people.png)V
+![people.xlsx](../../images/lab05/people.png)
