@@ -6,9 +6,10 @@ from pathlib import Path
 
 def json_to_csv(json_path: str, csv_path: str) -> None:
     """
-    Преобразует JSON-файл в CSV.
-    Поддерживает список словарей [{...}, {...}], заполняет отсутствующие поля пустыми строками.
-    Кодировка UTF-8. Порядок колонок — как в первом объекте или алфавитный (указать в README).
+    Convert a JSON file to CSV.
+    Support a list of dictionaries and fill missing fields with empty strings.
+    Use UTF-8 encoding. Preserve column order based on the first
+    appearance of keys across all dictionaries.
     """
 
     json_p = Path(json_path)
@@ -59,9 +60,9 @@ def json_to_csv(json_path: str, csv_path: str) -> None:
 
 def csv_to_json(csv_path: str, json_path: str) -> None:
     """
-    Преобразует CSV в JSON (список словарей).
-    Заголовок обязателен, значения сохраняются как строки.
-    json.dump(..., ensure_ascii=False, indent=2)
+    Convert a CSV file to JSON (a list of dictionaries).
+    Require headers and preserve CSV values as strings.
+    Use json.dump(..., ensure_ascii=False, indent=2).
     """
     
     csv_p = Path(csv_path)
