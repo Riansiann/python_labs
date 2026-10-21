@@ -90,6 +90,7 @@ def main():
         text = read_text(input_path, encoding="utf-8")
     except FileNotFoundError:
         print(f"Файл не найден: {input_path}", file=sys.stderr)
+        sys.exit(1)
 
     normal = normalize(text)
     tokens = tokenize(normal)

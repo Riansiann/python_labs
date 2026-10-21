@@ -58,3 +58,5 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
 
     wb.save(xlsx_p)
     
+if __name__ == '__main__':
+    csv_to_xlsx(r"data/samples/people.csv", r"data/out/people.xlsx")

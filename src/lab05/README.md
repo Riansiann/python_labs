@@ -95,18 +95,21 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
 
     with json_p.open("w", encoding="utf-8") as file:
         json.dump(rows, file, ensure_ascii=False, indent=2)    
-```
 
-### Преобразование `people.json` в `people_from_json.csv`:
-```python
-python -c "from src.lab05.json_csv import json_to_csv; json_to_csv('data/samples/people.json', 'data/out/people_from_json.csv')" 
+if __name__ == '__main__':
+    csv_to_json(r'data\samples\people.csv',
+                r'data\out\people_from_csv.json')
+    json_to_csv(r'data\samples\people.json',
+                r'data\out\people_from_json.csv')
 ```
+### Запуск модуля:
+```python
+python -m src.lab05.json_csv
+```
+### Преобразование `people.json` в `people_from_json.csv`:
 ![people_from_json](../../images/lab05/people_from_json.png)
 
 ### Преобразование `people.csv` в `people_from_csv.json`:
-```python
-python -c "from src.lab05.json_csv import csv_to_json; csv_to_json('data/samples/people.csv', 'data/out/people_from_csv.json')"  
-```
 ![people_from_csv](../../images/lab05/people_from_csv.png)
 
 
@@ -171,10 +174,14 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
  
 
     wb.save(xlsx_p)
-```
 
-### Создание `people.xlsx` из `people.csv`
-```python
-python -c "from src.lab05.csv_xlsx import csv_to_xlsx; csv_to_xlsx('data/samples/people.csv', 'data/out/people.xlsx')"   
+
+if __name__ == '__main__':
+    csv_to_xlsx(r"data/samples/people.csv", r"data/out/people.xlsx")
 ```
+### Запуск модуля:
+```python
+python -m src.lab05.csv_xlsx
+```
+### Создание `people.xlsx` из `people.csv`
 ![people.xlsx](../../images/lab05/people.png)
