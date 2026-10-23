@@ -28,7 +28,7 @@ def main():
         elif args.command == "csv2xlsx":
             csv_to_xlsx(args.input, args.output)
     except FileNotFoundError:
-                parser.error(f"File not found: {args.input}")
+        parser.error(f"File not found: {args.input}")
     except ValueError as error:
         parser.error(str(error))
 

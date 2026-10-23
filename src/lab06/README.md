@@ -82,7 +82,7 @@ def main():
             stats_command(args.input, args.top)
 
     except FileNotFoundError:
-            parser.error(f"File not found: {args.input}")
+        parser.error(f"File not found: {args.input}")
     except UnicodeDecodeError:
         parser.error(f'File {args.input} cannot be read using UTF-8 encoding')
 
