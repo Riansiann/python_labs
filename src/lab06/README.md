@@ -196,7 +196,7 @@ python -m src.lab06.cli_convert --help
 ```bash
 python -m src.lab06.cli_convert json2csv --help
 ```
-![convert_2_help](../../images/lab06/convert_2.png)
+![convert_2_help](../../images/lab06/convert_help_2.png)
 
 ## Обработка ошибок
 ### cli_text
