@@ -10,9 +10,9 @@
     "city": "Moscow"
   },
   {
-    "name": "Carlos",
-    "age": 30,
-    "city": "Kazan"
+    "name": null,
+    "age": false,
+    "city": ""
   },
   {
     "name": "Dana",

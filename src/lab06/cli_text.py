@@ -15,6 +15,7 @@ def cat_command(input_path: str, numbered: bool = False) -> None:
                 print(f"{number} {line}", end="")
             else:
                 print(line, end="")
+                
 
 def stats_command(input_path: str, top: int = 5) -> None:
     path = Path(input_path)
