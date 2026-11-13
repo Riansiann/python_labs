@@ -26,7 +26,7 @@ def check_search():
     for _ in range(trials):
         n = random.randint(0, 50)
         nums = [random.randint(-100, 100) for i in range(n)]
-        targets = [101]  # числа в nums находятся от -100 до 100
+        targets = [101]  
 
         if nums:
             targets.extend([
