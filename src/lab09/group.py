@@ -64,6 +64,12 @@ def add_student(path, student):
     validate_student(student)
 
     students = load_students(path)
+
+    # existing student check
+    for existing_student in students:
+        if existing_student["fio"] == student["fio"]:
+            raise ValueError("student with this fio already exists")
+        
     students.append(dict(student))
     save_students(path, students)
 
@@ -120,6 +126,54 @@ def update_student(path, fio, **fields):
             save_students(path, students)
             return True
     return False
+
+
+def stats(path, n = 5) -> dict:
+    students = load_students(path)
+    count = len(students)
+
+    # counting min, max, avg gpa 
+    gpa_list = [student["gpa"] for student in students]
+    min_gpa, max_gpa = min(gpa_list), max(gpa_list)
+    boundary_gpa = (min_gpa, max_gpa)
+    avg_gpa = sum(boundary_gpa) / 2
+
+    # create group list with number of students for each group
+    groups = {}
+    
+    for student in students:
+        group = student["group"]
+
+        if groups.get(group) is None:
+            groups[group] = 0
+        groups[group] += 1
+
+    # create a list of best students
+    s_sort_gpa = sorted(students, key=lambda s: s["gpa"], reverse = True)
+
+    best_students = []
+    for student in s_sort_gpa[:n]:
+        rec = {
+            "fio": student["fio"],
+            "gpa": student["gpa"]            
+        }
+
+        best_students.append(rec)
+
+    stat_dict = {
+        "count": count,
+        "min_gpa": min_gpa,
+        "max_gpa": max_gpa,
+        "avg_gpa": avg_gpa, 
+        "groups": groups,
+        "top_students": best_students
+    }
+
+    return stat_dict
+
+    
+
+
 
 
 

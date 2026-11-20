@@ -4,6 +4,7 @@
 ```py
 from pathlib import Path
 import csv
+from pprint import pprint
 
 from src.lab08.models import student_from_dict, validate_student, STUDENT_FIELDS   
 ```
@@ -82,6 +83,12 @@ def add_student(path, student):
     validate_student(student)
 
     students = load_students(path)
+
+    # existing student check
+    for existing_student in students:
+        if existing_student["fio"] == student["fio"]:
+            raise ValueError("student with this fio already exists")
+
     students.append(dict(student))
     save_students(path, students)
 ```
@@ -156,6 +163,53 @@ def update_student(path, fio, **fields):
     return False
 ```
 
+### stats
+Функция считывает данные студентов из CSV-файла, вычисляет общее количество студентов, минимальный, максимальный и средний GPA, подсчитывает количество студентов в каждой группе и возвращает словарь со статистикой и списком лучших студентов по GPA.
+```py
+def stats(path, n = 5) -> dict:
+    students = load_students(path)
+    count = len(students)
+
+    # counting min, max, avg gpa 
+    gpa_list = [student["gpa"] for student in students]
+    min_gpa, max_gpa = min(gpa_list), max(gpa_list)
+    boundary_gpa = (min_gpa, max_gpa)
+    avg_gpa = sum(boundary_gpa) / 2
+
+    # create group list with number of students for each group
+    groups = {}
+    
+    for student in students:
+        group = student["group"]
+
+        if groups.get(group) is None:
+            groups[group] = 0
+        groups[group] += 1
+
+    # create a list of best students
+    s_sort_gpa = sorted(students, key=lambda s: s["gpa"], reverse = True)
+
+    best_students = []
+    for student in s_sort_gpa[:n]:
+        rec = {
+            "fio": student["fio"],
+            "gpa": student["gpa"]            
+        }
+
+        best_students.append(rec)
+
+    stat_dict = {
+        "count": count,
+        "min_gpa": min_gpa,
+        "max_gpa": max_gpa,
+        "avg_gpa": avg_gpa, 
+        "groups": groups,
+        "top_students": best_students
+    }
+
+    return stat_dict
+```
+
 ## Задание B - cli_students.py
 ### imports
 ```py
@@ -201,6 +255,9 @@ def build_parser():
     update_parser.add_argument("--gpa", help="Student's GPA (0-5).")
     update_parser.add_argument("--group", help="Student's group.")
     update_parser.add_argument("--birthdate", help="Birthdate in YYYY-MM-DD format.")
+
+    stats_parser = sub.add_parser("stats", help = "Show student statistics.")
+    stats_parser.add_argument("--n", default=5, help="Number of top students to display.")
 
     return parser
 ```
@@ -256,7 +313,11 @@ def main():
                 print("record updated")
             else:
                 print("student not found")
-        
+
+            elif args.command == "stats":
+                result = stats(args.db, args.n)
+                pprint(result, sort_dicts=False)    
+
     except (ValueError, TypeError, KeyError) as er:
         print(f"Error: {er}", file=sys.stderr)
         return 1
@@ -296,6 +357,7 @@ fio,birthdate,group,gpa,extra
 | Обновление GPA | ![update](../../images/lab09/update.png) |
 | Удаление студентов | ![remove_all](../../images/lab09/remove_all.png) |
 | Просмотр итогового списка | ![final_list](../../images/lab09/final_list.png) |
+| Вывод статистики | ![stats](../../images/lab09/stats.png) |
 
 
 
@@ -331,6 +393,7 @@ fio,birthdate,group,gpa,extra
 | 15 | Недопустимый ключ сортировки — ValueError | `python -c "from src.lab09.group import list_students; list_students('data/lab09/students_good.csv', 'age')"` | ![invalid_sort](../../images/lab09/invalid_sort.png) |
 | 16 | Обновление отсутствующей записи — False | `python -c "from src.lab09.group import update_student; print(update_student('data/lab09/students_good.csv', 'Несуществующий Студент', gpa=4.5))"` | ![update_missing](../../images/lab09/update_missing.png) |
 | 17 | Обновление неизвестного поля — KeyError | `python -c "from src.lab09.group import update_student; update_student('data/lab09/students_good.csv', 'Петров Пётр Петрович', course=2)"` | ![invalid_field](../../images/lab09/invalid_field.png) |
+| 18 | Проверка добавления существующего студента | `python -m src.lab09.cli_students --db data/lab09/students_good.csv add --fio "Петров Пётр Петрович" --birthdate 2007-05-15 --group БИВТ-26-6-2 --gpa 4.8` | ![existing_student](../../images/lab09/existing_student.png) |
 
 ### Итоговый CSV:
 ```

@@ -1,5 +1,6 @@
 import argparse
 import sys
+from pprint import pprint
 
 from src.lab08.models import make_student, format_student
 from src.lab09.group import (
@@ -8,6 +9,7 @@ from src.lab09.group import (
     find_students,
     remove_student,
     update_student,
+    stats
 )
 
 def build_parser():
@@ -36,6 +38,9 @@ def build_parser():
     update_parser.add_argument("--gpa", help="Student's GPA (0-5).")
     update_parser.add_argument("--group", help="Student's group.")
     update_parser.add_argument("--birthdate", help="Birthdate in YYYY-MM-DD format.")
+
+    stats_parser = sub.add_parser("stats", help = "Show student statistics.")
+    stats_parser.add_argument("--n", default=5, help="Number of top students to display.")
 
     return parser
 
@@ -87,6 +92,10 @@ def main():
                 print("record updated")
             else:
                 print("student not found")
+
+        elif args.command == "stats":
+            result = stats(args.db, args.n)
+            pprint(result, sort_dicts=False)
         
     except (ValueError, TypeError, KeyError) as er:
         print(f"Error: {er}", file=sys.stderr)
