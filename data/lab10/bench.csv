@@ -1,0 +1,5 @@
+operation,n,list,deque/ll,ratio
+pop(0)/popleft(),10000,0.005886,0.000348,16.9
+pop(0)/popleft(),100000,0.708168,0.005833,121.4
+insert/ll_prepend,10000,0.012328,0.000975,12.6
+insert/ll_prepend,100000,1.437239,0.017248,83.3
