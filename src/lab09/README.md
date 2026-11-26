@@ -4,7 +4,7 @@
 ```py
 from pathlib import Path
 import csv
-from pprint import pprint
+import os
 
 from src.lab08.models import student_from_dict, validate_student, STUDENT_FIELDS   
 ```
@@ -57,7 +57,7 @@ def load_students(path) -> list[dict]:
 ```
 
 ### save_students
-Функция проверяет записи студентов и перезаписывает CSV-файл переданными данными.
+Функция проверяет записи студентов и перезаписывает CSV-файл переданными данными. Для предотвращения потери данных запись сначала выполняется во временный файл, который затем заменяет исходный через os.replace(). При ошибке до замены исходный файл остаётся неизменным, а исключение продолжает распространяться.
 ```py
 def save_students(path, students):
     """Validate and save student records to a CSV file."""
@@ -67,10 +67,18 @@ def save_students(path, students):
     for student in students:
         validate_student(student)
 
-    with open(path, "w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=STUDENT_FIELDS)
-        writer.writeheader()
-        writer.writerows(students)
+    tmp_path = str(path) + ".tmp"
+    
+    try:
+        with open(tmp_path, "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=STUDENT_FIELDS)
+            writer.writeheader()
+            writer.writerows(students)
+
+        os.replace(tmp_path, path)
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 ```
 
 **CRUD FUNCTIONS**
@@ -215,6 +223,7 @@ def stats(path, n = 5) -> dict:
 ```py
 import argparse
 import sys
+from pprint import pprint
 
 from src.lab08.models import make_student, format_student
 from src.lab09.group import (

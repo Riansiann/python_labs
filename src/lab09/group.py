@@ -1,5 +1,6 @@
 from pathlib import Path
 import csv
+import os
 
 from src.lab08.models import student_from_dict, validate_student, STUDENT_FIELDS    
 
@@ -52,10 +53,18 @@ def save_students(path, students):
     for student in students:
         validate_student(student)
 
-    with open(path, "w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=STUDENT_FIELDS)
-        writer.writeheader()
-        writer.writerows(students)
+    tmp_path = str(path) + ".tmp"
+    
+    try:
+        with open(tmp_path, "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=STUDENT_FIELDS)
+            writer.writeheader()
+            writer.writerows(students)
+
+        os.replace(tmp_path, path)
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 # CRUD functions
 
