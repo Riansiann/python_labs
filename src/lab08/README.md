@@ -114,7 +114,7 @@ def student_age(rec, today=None) -> int:
 ```
 
 ### format_student
-Функция преобразует ФИО в фамилию с инициалами, форматирует группу и GPA, вычисляет возраст. Возвращает строку с данными студента.
+Функция преобразует ФИО в фамилию с инициалами, форматирует группу и GPA, вычисляет возраст. Возвращает строку с данными студента с учётом склонения «год/года/лет».
 ```py
 def format_student(rec):
     """Return a formatted string with the student's name, group, age, and GPA."""
@@ -131,7 +131,18 @@ def format_student(rec):
 
     gpa = f"{gpa:.2f}"
 
-    return f"{name} {group}, {age} лет, GPA: {gpa}"
+    if age % 100 in (11, 12, 13, 14):
+        ending = 'лет'
+    elif age % 10 == 1:
+        ending = 'год'
+    elif age % 10 in (2, 3, 4):
+        ending = 'года'
+    else:
+        ending = 'лет'
+
+    rec_f = f"{name} {group}, {age} {ending}, GPA: {gpa}"
+
+    return rec_f 
 ```
 
 ### student_to_dict
