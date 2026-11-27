@@ -81,8 +81,10 @@ def student_age(rec, today=None) -> int:
 
     if isinstance(today, str):
         today = date.fromisoformat(today)
-    if today is None:
+    elif today is None:
         today = date.today()
+    elif not isinstance(today, date):
+        raise ValueError("today must be a date, string or None")
     age = today.year - birthdate.year
     if (today.month, today.day) < (birthdate.month, birthdate.day):
         age -= 1
