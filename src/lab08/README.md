@@ -199,7 +199,7 @@ def update_student(rec, **fields):
     validate_student(rec)
 
     for key in fields:
-        if  key not in STUDENT_FIELDS:
+        if key not in STUDENT_FIELDS:
             raise KeyError(f"unknown key provided: {key}")
 
     new_rec = rec.copy()
@@ -267,7 +267,10 @@ def students_from_csv(path):
     students = []
     with open(path, "r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
-
+        
+        if reader.fieldnames != list(STUDENT_FIELDS):
+            raise ValueError("invalid CSV header")
+        
         for i, row in enumerate(reader, start = 1):
             try:
                 students.append(student_from_dict(row))

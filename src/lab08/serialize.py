@@ -1,6 +1,6 @@
 import json
 import csv
-from src.lab08.models import student_to_dict, student_from_dict
+from src.lab08.models import student_to_dict, student_from_dict, STUDENT_FIELDS
 
 
 def students_to_json(students, path):
@@ -37,7 +37,10 @@ def students_from_csv(path):
     students = []
     with open(path, "r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
-
+        
+        if reader.fieldnames != list(STUDENT_FIELDS):
+            raise ValueError("invalid CSV header")
+        
         for i, row in enumerate(reader, start = 1):
             try:
                 students.append(student_from_dict(row))
